@@ -10,7 +10,9 @@
  */
 public class Carta
 {
+    //valor de la carta de 1 a 7 y de 10 a 12
     private int valorCarta;
+    // valor del palo (0 es oros, 1 es copas, 2 es espadas y 3 es bastos).
     private int paloCarta;
 
     /**
@@ -40,7 +42,8 @@ public class Carta
     * devuelve el valor de la carta.
     */
    public String nombreValorCarta(){
-       String carta = "" + valorCarta;
+       String carta = "" +valorCarta;
+
        if(valorCarta == 1){
            carta = "as";
        }
@@ -71,7 +74,7 @@ public class Carta
            palo = "de espadas";
        }
        else if(paloCarta == 3){
-           palo = "de bastos ";
+           palo = "de bastos";
        }
        return palo;
    } 
@@ -80,7 +83,10 @@ public class Carta
     * devuelve el nombre de la carta.
     */
    public String toString(){
-       return nombreValorCarta()+ " " +nombrePaloCarta() ;
+       String num = nombreValorCarta();
+       String name = nombrePaloCarta();
+       return num + " " +name; 
+       //return nombreValorCarta()+ " " +nombrePaloCarta() ;
    }
 }
 
