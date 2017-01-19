@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 /**
  * Mazo. El constructor de la clase Mazo debe encargrse de crear las 40 cartas de la baraja española y de dejarlas guardadas de alguna forma.
  */
@@ -14,17 +15,17 @@ public class Mazo
     public Mazo()
     {
         baraja = new ArrayList<>();
+        creaMazo();
     }
 
     /**
      *Crea todas las cartas del mazo.
      */
-    public void creaMazo()
+    private void creaMazo()
     {
-        int contL = 1;// -------------- para el nº de cartas en cada palo.
+        int contL = 1;// -------------- para el nº total de cartas en cada palo.
         int contC = 0;// -------------- para cadad uno de los palos.
-        while( contC < 4 ){
-            
+        while( contC < 4 ){           
             contL = 1;
             while( contL <= 12){
                 if(contL == 8){
@@ -43,9 +44,10 @@ public class Mazo
      */
     public void verCartasDelMazo(){
 
+        int cont = 1;
         for(Carta carta: baraja){
-            System.out.println( carta);
-
+            System.out.println( cont+ ".-  " +carta);
+            cont ++;
         }
     }
 

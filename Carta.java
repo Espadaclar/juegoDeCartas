@@ -42,8 +42,7 @@ public class Carta
     * devuelve el valor de la carta.
     */
    public String nombreValorCarta(){
-       String carta = "" +valorCarta;
-
+       String carta= String.valueOf(valorCarta);//---- el atributo entero 'valorCarta' lo convertimos a String
        if(valorCarta == 1){
            carta = "as";
        }
@@ -63,7 +62,7 @@ public class Carta
     * devuelve el palo de la carta.
     */
    public String nombrePaloCarta(){
-       String palo = "";
+      String palo= String.valueOf(paloCarta);//---- el atributo entero 'paloCarta' lo convertimos a String.
        if(paloCarta == 0){
            palo = "de oros";
        }
