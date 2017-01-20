@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Random;
 /**
  * Mazo. El constructor de la clase Mazo debe encargrse de crear las 40 cartas de la baraja española y de dejarlas guardadas de alguna forma.
  */
@@ -7,7 +7,6 @@ public class Mazo
 {
     // instance variables - replace the example below with your own
     private ArrayList<Carta> baraja;
-    private Carta carta;
 
     /**
      * Constructor for objects of class Mazo
@@ -40,10 +39,26 @@ public class Mazo
     }
 
     /**
+     * consiga mezclar las cartas existentes en ese momento en el mazo.
+     */
+    public void barajar(){
+        Random ale = new Random();
+        Carta carta = null;//------------------------------ almacenará la carta que cambiamos de lugar.
+        int cont = 0; // ---------------------------------- facilita el uso del bucle while.
+        int cont2 = ale.nextInt(352) + baraja.size(); //---- nº aleatorio del total de cartas que se cambiarán de lugar. entre 40 y 391.
+        while(cont < cont2){            
+            int valor = ale.nextInt(baraja.size());//------- nuevo aleatorio para selecionar una de las cartas de la baraja.
+            carta = baraja.get(valor); //------------------- almaceno la carta seleccionada en la VL carta.
+            baraja.remove(valor);  //----------------------- elimino del ArrayList la carta selecionada.
+            baraja.add(carta);  // ------------------------- pongo nuevamente la carta en la última posición del ArrayList.
+            cont ++; // ------el proceso se repite hasta que cont sea igual al valor aleatorio de 'cont2'.
+        }
+    }
+    
+    /**
      * muestra linea a linea todas los nombres de las cartas existentes en el mazo
      */
     public void verCartasDelMazo(){
-
         int cont = 1;
         for(Carta carta: baraja){
             System.out.println( cont+ ".-  " +carta);
