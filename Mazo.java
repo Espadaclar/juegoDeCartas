@@ -7,7 +7,7 @@ public class Mazo
 {
     // instance variables - replace the example below with your own
     private ArrayList<Carta> baraja;
-
+    private Carta carta;
     /**
      * Constructor for objects of class Mazo
      */
@@ -53,6 +53,19 @@ public class Mazo
             baraja.add(carta);  // ------------------------- pongo nuevamente la carta en la última posición del ArrayList.
             cont ++; // ------el proceso se repite hasta que cont sea igual al valor aleatorio de 'cont2'.
         }
+    }
+    
+    /**
+     * devuelva un objeto Carta. Concretamente debe devolver la primera carta del mazo, eliminando esta del mazo.
+     */
+    public Carta sacarCarta(){
+        Carta carta = null;
+        if(baraja.size() != 0){
+            carta = baraja.get(0);
+            baraja.remove(0);
+            System.out.println(carta);
+        }
+        return carta;
     }
     
     /**
