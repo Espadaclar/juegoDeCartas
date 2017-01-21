@@ -54,7 +54,22 @@ public class Mazo
             cont ++; // ------el proceso se repite hasta que cont sea igual al valor aleatorio de 'cont2'.
         }
     }
-    
+
+    /**
+     * después de barajar se corta.
+     */
+    public void cortar(){
+        Random ale = new Random();
+        int val = ale.nextInt(25) +7; //nº aleatorio entre 6 y 31. (todas las cartas que estén por encima de la posición que marque
+        // este nº aleatrio, forman un paquete que pasará a estar colocado debajo de la 1º carta. )
+        int cont = baraja.size();
+        for(int i = 0 ; i < val; i ++){
+            Carta carta = null;
+            carta = baraja.remove(0);
+            baraja.add(carta);
+        }
+    }
+
     /**
      * devuelva un objeto Carta. Concretamente debe devolver la primera carta del mazo, eliminando esta del mazo.
      */
@@ -67,7 +82,7 @@ public class Mazo
         }
         return carta;
     }
-    
+
     /**
      * muestra linea a linea todas los nombres de las cartas existentes en el mazo
      */
@@ -87,5 +102,4 @@ public class Mazo
     }
 }
 
-    
     
