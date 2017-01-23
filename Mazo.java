@@ -48,11 +48,11 @@ public class Mazo
         int cont2 = ale.nextInt(352) + baraja.size(); //---- nº aleatorio del total de cartas que se cambiarán de lugar. entre 40 y 391.
         while(cont < cont2){            
             int valor = ale.nextInt(baraja.size());//------- nuevo aleatorio para selecionar una de las cartas de la baraja.
-            carta = baraja.get(valor); //------------------- almaceno la carta seleccionada en la VL carta.
-            baraja.remove(valor);  //----------------------- elimino del ArrayList la carta selecionada.
+            carta = baraja.remove(valor); //------------------- almaceno la carta eliminada en la VL carta.
             baraja.add(carta);  // ------------------------- pongo nuevamente la carta en la última posición del ArrayList.
             cont ++; // ------el proceso se repite hasta que cont sea igual al valor aleatorio de 'cont2'.
-        }
+        }        
+        //cortar();// ------------ después de haber embarajado, cortamos¡¡¡
     }
 
     /**
@@ -61,7 +61,7 @@ public class Mazo
     public void cortar(){
         Random ale = new Random();
         int val = ale.nextInt(25) +7; //nº aleatorio entre 6 y 31. (todas las cartas que estén por encima de la posición que marque
-        // este nº aleatrio, forman un paquete que pasará a estar colocado debajo de la 1º carta. )
+                                    // este nº aleatrio, forman un paquete que pasará a estar colocado debajo de la carta de abajo. )
         int cont = baraja.size();
         for(int i = 0 ; i < val; i ++){
             Carta carta = null;
@@ -73,11 +73,25 @@ public class Mazo
     /**
      * devuelva un objeto Carta. Concretamente debe devolver la primera carta del mazo, eliminando esta del mazo.
      */
-    public Carta sacarCarta(){
+    public Carta sacarCartaPorDebajo(){
         Carta carta = null;
         if(baraja.size() != 0){
             carta = baraja.get(0);
             baraja.remove(0);
+            System.out.println(carta);
+        }
+        return carta;
+    }
+    
+    /**
+     * devuelva un objeto Carta. Concretamente debe devolver la primera carta del mazo, eliminando esta del mazo.
+     */
+    public Carta sacarCartaPorEncima(){
+        Carta carta = null;
+        int numCarta = (baraja.size()) -1;
+        if(baraja.size() != 0){
+            carta = baraja.get(numCarta);
+            baraja.remove(numCarta);
             System.out.println(carta);
         }
         return carta;
