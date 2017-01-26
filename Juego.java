@@ -60,6 +60,22 @@ public class Juego
     }
 
     /**
+     *muestre por pantalla las cartas de un jugador. Para saber qué jugador mostrar,
+     * indicamos como parámetro del método el nombre del Jugador
+     */
+    public void verCartasJugador(String name){
+        int cont = 0;
+         System.out.println("================= Cartas de " +name);
+        while(cont < jugadores.size()){
+            if(jugadores.get(cont).getNombreJugador().equals(name)){
+                jugadores.get(cont).verCartasJugador();
+            }
+            cont ++;
+        }
+        System.out.println("");
+    }
+    
+    /**
      * muestra las cartas de los jugadores. 
      */
     public void muestraCartasDeTodosLosJugadores(){
