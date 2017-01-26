@@ -42,6 +42,13 @@ public class Jugador
             System.out.println( " " +cartasJugador[i]);
         }
     }
+    
+    /**
+     * retorna el nombre del jugador.
+     */
+    public String getNombreJugador(){
+        return name;
+    }
 }
 
 
