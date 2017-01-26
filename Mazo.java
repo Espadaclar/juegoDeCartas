@@ -78,7 +78,7 @@ public class Mazo
         if(baraja.size() != 0){
             carta = baraja.get(0);
             baraja.remove(0);
-            System.out.println(carta);
+           // System.out.println(carta);
         }
         return carta;
     }
@@ -92,7 +92,7 @@ public class Mazo
         if(baraja.size() != 0){
             carta = baraja.get(numCarta);
             baraja.remove(numCarta);
-            System.out.println(carta);
+           // System.out.println(carta);
         }
         return carta;
     }

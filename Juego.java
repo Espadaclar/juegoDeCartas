@@ -16,6 +16,9 @@ import java.util.Random;
  */
 public class Juego
 {
+    //constante para fijar el nº de cartas que ha de recibir cada jugador.
+    public static final int NUM_CARTAS = 5;
+
     private ArrayList<Jugador> jugadores;// para almacenar jagadores
     private Mazo mazo;
     private int numJugadores;
@@ -36,7 +39,39 @@ public class Juego
         jugadores = new ArrayList<>();
         mazo = new Mazo();
         crearJugador(numJugadores);
-       
+
+    }
+
+    /**
+     * reparte cartas entre los jugadores
+     */
+    public void repartir(){
+        mazo.barajar();
+        int contCartas = 0;
+        while(contCartas < NUM_CARTAS){
+            int contJugadores = 0;
+            while(contJugadores < jugadores.size()){
+                jugadores.get(contJugadores).recibirCarta(mazo.sacarCartaPorEncima());
+                contJugadores ++;
+            }
+
+            contCartas ++;
+        }
+    }
+
+    /**
+     * muestra las cartas de los jugadores. 
+     */
+    public void muestraCartasDeTodosLosJugadores(){
+        int cont = 0;
+        int cont1 = 0;
+        while(cont < jugadores.size()){
+            System.out.println("================= Cartas de " +jugadores.get(cont).getNombreJugador());
+            jugadores.get(cont).verCartasJugador();
+            System.out.println("");
+            cont ++;
+        }
+        System.out.println("");
     }
 
     /**
@@ -71,6 +106,4 @@ public class Juego
         }
     }
 }
-
-
 
