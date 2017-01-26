@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * En el constructor de Juego se crean tantos jugadores como se especifiquen por parametro y un mazo. Sabemos que nunca
  * se van a especificar menos de 3 ni más de 5 jugadores.
@@ -15,26 +15,24 @@
  */
 public class Juego
 {
-    private int x;
+    private ArrayList<Jugador> jugador;// para almacenar jagadores
+    private Mazo mazo;
+    private int numJugadores;
+    
+    //Array para poder elegir nombres  aleatoriamente.
+    public static String[] NOMBRES = {"Juán", "Francisco Javier", "Lorenzo", "Israel", "Cristian", "Ricardo", "Emilio", "José Ricardo",
+            "Luis Enrique","Luis Federico", "Mario", "Nasrrudín", "José Manuel", "Aquiles", "Merquiades", "Francisco José",
+            "Narciso", "Gregorio", "Isidoro", "Raquel", "María", "Milagros", "Eva Carmina", "Jacinta", "Blas", "Fulgencio",
+            "Salusitano", "Elena", "Gemma", "Fermín", "Amancio", "Esther", "Ángela"};
 
     /**
      * Constructor for objects of class Juego
      */
-    public Juego()
+    public Juego(int numJugadores)
     {
-        // initialise instance variables
-        x = 0;
+        this.numJugadores = (numJugadores < 3 || numJugadores > 5) ? 4 : numJugadores;
+        jugador = new ArrayList<>();
+        mazo = new Mazo();
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
 }
