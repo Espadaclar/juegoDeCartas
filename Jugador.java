@@ -42,16 +42,7 @@ public class Jugador
             System.out.println( " " +cartasJugador[i]);
         }
     }
-    
 }
-
-
-
-
-
-
-
-
 
 
 
