@@ -122,7 +122,14 @@ public class Juego
         System.out.println("========== Carta que pinta.-" +cartaQuePinta);
         System.out.println("");
     }
-
+    
+    /**
+     *  que muestre las cartas del jugador humano.-------------------------------------------------------------- 3b
+     */
+    public void verCartasJugadorHumano(){
+        verCartasJugador(jugadorHumano);
+    }
+    
     /**
      * crea el nº de jugadores pasados por parámetro, entre 3 y 5, sino creará 4 por defecto, y los 
      * añade a la colección de jugadores. ----------------------------------------------------------------------- 4
