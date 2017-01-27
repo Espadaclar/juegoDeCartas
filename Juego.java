@@ -20,8 +20,11 @@ import java.util.Random;
  * 
  * -Modificar la clase Juego para que: El constructor admita como segundo parametro el nombre del jugador humano. Además debe mostrar
  * por pantalla un mensaje de bienvenida y el nombre de cada uno de los jugadores de la partida (incluyendo el humano) .
+ * 
  * El metodo repartir debe mostrar por pantalla el palo que pinta con un mensaje del tipo "Pintan bastos" o "Pintan oros" y debe
-  *devolver el número asociado con el palo que pinta. Además debe mostrar por pantalla las cartas que recibe el jugador humano.
+  *devolver el número asociado con el palo que pinta. 
+  *
+  *Además debe mostrar por pantalla las cartas que recibe el jugador humano.
  *Añadir un método verCartasJugadorHumano que muestre las cartas del jugador humano.
  * Modificar el nombre del metodo verCartasJugador para que pase a llamarse hacerTrampasYVerCartasDeJugador.
  */
@@ -78,6 +81,7 @@ public class Juego
             }            
             contCartas ++;
         }
+        System.out.println("Cata que pinta.- " +cartaQuePinta );
     }
 
     /**
@@ -151,7 +155,7 @@ public class Juego
     /**
      * para dar la bienVenida.
      */
-    public void mostrarBienVenida(){
+    private void mostrarBienVenida(){
        
             System.out.println("== Bien venidos a la Partida de Julepe \n como jugador humano tenemos a ___________ " +jugadorHumano
                         + "\n sus contrincantes: ");
