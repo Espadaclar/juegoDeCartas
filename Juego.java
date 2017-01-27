@@ -22,9 +22,9 @@ import java.util.Random;
  * por pantalla un mensaje de bienvenida y el nombre de cada uno de los jugadores de la partida (incluyendo el humano) .
  * 
  * El metodo repartir debe mostrar por pantalla el palo que pinta con un mensaje del tipo "Pintan bastos" o "Pintan oros" y debe
-  *devolver el número asociado con el palo que pinta. 
-  *
-  *Además debe mostrar por pantalla las cartas que recibe el jugador humano.
+ *devolver el número asociado con el palo que pinta. 
+ *
+ *Además debe mostrar por pantalla las cartas que recibe el jugador humano.
  *Añadir un método verCartasJugadorHumano que muestre las cartas del jugador humano.
  * Modificar el nombre del metodo verCartasJugador para que pase a llamarse hacerTrampasYVerCartasDeJugador.
  */
@@ -38,7 +38,7 @@ public class Juego
     private Carta carta; // --------- para almacenar cada una de las cartas que valla recibiendo cada uno de los jugadores ______(en mt 1).
     private String cartaQuePinta; //----------almacena la carta que pinte el jugador que reparta las cartas ______(en mt 1).
     private int numJugadores;
-    
+
     private String jugadorHumano;//nombre del jugador humano.
 
     //Array para poder elegir nombres  aleatoriamente.
@@ -54,15 +54,18 @@ public class Juego
     {
         //aplico operador alternativa para asegurar un nº de jugadores correcto.
         this.numJugadores = (numJugadores < 3 || numJugadores > 5) ? 4 : numJugadores;
+        
         jugadores = new ArrayList<>();
         mazo = new Mazo();
+        
+        Jugador jugador2 = new Jugador(jugadorHumano);
+        jugadores.add(jugador2);//----------------añado el nuevo jugador a la colección de jugadores, será el 1º de la colección.
         carta = null;
         this.jugadorHumano = jugadorHumano;
         cartaQuePinta = "";
-        crearJugador(numJugadores);
-        
-        mostrarBienVenida();//--------------------------da la bien venida a los jugadores.
-        mostrarJugadores();//---------------------------- muestra los jugadores.
+        crearJugador(numJugadores); //-----------------(mt___4)
+
+        mostrarBienVenida();//--------------------------da la bien venida a los jugadores y muestra todos sus mombres. (mt_____6)
     }
 
     /**
@@ -81,7 +84,8 @@ public class Juego
             }            
             contCartas ++;
         }
-        System.out.println("Cata que pinta.- " +cartaQuePinta );
+        System.out.println("Carta que pinta.- " +cartaQuePinta );
+        System.out.println("");
     }
 
     /**
@@ -91,7 +95,7 @@ public class Juego
     public void verCartasJugador(String name){
         int cont = 0;
         boolean encontrado = false;
-         System.out.println("================= Cartas de " +name);
+        System.out.println("================= Cartas de " +name);
         while(cont < jugadores.size() && !encontrado){
             if(jugadores.get(cont).getNombreJugador().equals(name)){
                 jugadores.get(cont).verCartasJugador();
@@ -102,7 +106,7 @@ public class Juego
         System.out.println("========== Carta que pinta.-" +cartaQuePinta);
         System.out.println("");
     }
-    
+
     /**
      * muestra las cartas de los jugadores. ------------------------------------------------------------------ 3
      */
@@ -127,10 +131,10 @@ public class Juego
         if(numJ < 3 || numJ > 5){
             numJ = 4;
         }
-        int cont = 0;
-        Random ale2 = new Random();
-        while(cont < numJ){
-            int aux = ale2.nextInt(NOMBRES.length);  //aux guarda un nº aleatorio entre 0 y el tamaño de NOMBREs[]          
+        int cont = 1;
+        Random ale2 = new Random();        
+        while(cont < numJ ){
+            int aux = ale2.nextInt(NOMBRES.length);  //aux guarda un nº aleatorio entre 0 y el tamaño de NOMBREs[]              
             if(NOMBRES[aux] != null){    //si  esa posición del Array no es null.
                 Jugador jugador = new Jugador(NOMBRES[aux]); // creo el jugador con el nombre que el array tiene en esa posición.
                 jugadores.add(jugador); //añado el jugador creado a la colección de jugadores.
@@ -147,30 +151,24 @@ public class Juego
      * muestra el nombre de los jugadores creados aleatoriamente.---------------------------------------------------- 5
      */
     public void mostrarJugadores(){
+        System.out.println("========== Name all player.");
         for(int i = 0; i < jugadores.size(); i++){
             System.out.println(jugadores.get(i).getNombreJugador());
         }
+        System.out.println("");
     }
-    
+
     /**
-     * para dar la bienVenida.
+     * para dar la bienVenida. ---------------------------------------------------------------------------------------- 6
      */
     private void mostrarBienVenida(){
-       
-            System.out.println("== Bien venidos a la Partida de Julepe \n como jugador humano tenemos a ___________ " +jugadorHumano
-                        + "\n sus contrincantes: ");
-      
+
+        System.out.println("== Bien venidos a la Partida de Julepe \n como jugador humano tenemos a ___________ " +jugadorHumano);
+        System.out.println("");
+        mostrarJugadores();
     }
-    
+
 }
-
-
-
-
-
-
-
-
 
 
 
