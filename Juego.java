@@ -13,6 +13,17 @@ import java.util.Random;
  * 
  * Implementa un método llamado verCartasJugador que muestre por pantalla las cartas de un jugador. Para saber qué jugador mostrar,
  * indicamos como parámetro del método el nombre del Jugador.
+ * 
+ * 
+ * Vamos a pensar ahora que el primer jugador es siempre el humano que interactua con nuestro programa y el resto, jugadores
+ * controlados por el ordenador.
+ * 
+ * -Modificar la clase Juego para que: El constructor admita como segundo parametro el nombre del jugador humano. Además debe mostrar
+ * por pantalla un mensaje de bienvenida y el nombre de cada uno de los jugadores de la partida (incluyendo el humano) .
+ * El metodo repartir debe mostrar por pantalla el palo que pinta con un mensaje del tipo "Pintan bastos" o "Pintan oros" y debe
+  *devolver el número asociado con el palo que pinta. Además debe mostrar por pantalla las cartas que recibe el jugador humano.
+ *Añadir un método verCartasJugadorHumano que muestre las cartas del jugador humano.
+ * Modificar el nombre del metodo verCartasJugador para que pase a llamarse hacerTrampasYVerCartasDeJugador.
  */
 public class Juego
 {
@@ -24,6 +35,8 @@ public class Juego
     private Carta carta; // --------- para almacenar cada una de las cartas que valla recibiendo cada uno de los jugadores ______(en mt 1).
     private String cartaQuePinta; //----------almacena la carta que pinte el jugador que reparta las cartas ______(en mt 1).
     private int numJugadores;
+    
+    private String jugadorHumano;//nombre del jugador humano.
 
     //Array para poder elegir nombres  aleatoriamente.
     public static String[] NOMBRES = {"Juán", "Francisco Javier", "Lorenzo", "Israel", "Cristian", "Ricardo", "Emilio", "José Ricardo",
@@ -34,16 +47,19 @@ public class Juego
     /**
      * Constructor for objects of class Juego
      */
-    public Juego(int numJugadores)
+    public Juego(int numJugadores, String jugadorHumano)
     {
         //aplico operador alternativa para asegurar un nº de jugadores correcto.
         this.numJugadores = (numJugadores < 3 || numJugadores > 5) ? 4 : numJugadores;
         jugadores = new ArrayList<>();
         mazo = new Mazo();
         carta = null;
+        this.jugadorHumano = jugadorHumano;
         cartaQuePinta = "";
         crearJugador(numJugadores);
-
+        
+        mostrarBienVenida();//--------------------------da la bien venida a los jugadores.
+        mostrarJugadores();//---------------------------- muestra los jugadores.
     }
 
     /**
@@ -131,5 +147,31 @@ public class Juego
             System.out.println(jugadores.get(i).getNombreJugador());
         }
     }
+    
+    /**
+     * para dar la bienVenida.
+     */
+    public void mostrarBienVenida(){
+       
+            System.out.println("== Bien venidos a la Partida de Julepe \n como jugador humano tenemos a ___________ " +jugadorHumano
+                        + "\n sus contrincantes: ");
+      
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
