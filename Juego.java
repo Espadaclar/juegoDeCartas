@@ -1,32 +1,13 @@
 import java.util.ArrayList;
 import java.util.Random;
 /**
- * En el constructor de Juego se crean tantos jugadores como se especifiquen por parametro y un mazo. Sabemos que nunca
- * se van a especificar menos de 3 ni más de 5 jugadores.
+ * Modificar la clase Jugador para que:
+ *- Exista un nuevo método que sea tirarCarta. Admite un parámetro String que indica el nombre de la carta a tirar. El método
+ * muestra por pantalla el nombre del jugador que ha tirado la carta y la carta tirada. Devuelve la carta tirada. En caso de 
+ * que el jugador no tenga cartas o de que el nombre especificado como parámetro no coincida con ninguna carta, devuelve null.
  * 
- * Los nombres de los jugadores deben ser asignados de forma aleatoria entre un conjunto de nombres (dos jugadores no 
- * pueden tener el mismo nombre).
- * 
- * Implementar en esa clase un método llamado repartir que coja el mazo y de 5 cartas a los jugadores creados. La entrega de 
- * cartas debe ser al estilo del reparto que se hace en la realidad, es decir, primero se baraja y luego se entrega una carta
- * a cada jugador. La última carta entregada indica el palo que pinta, que debe registrarse de alguna foma.
- * 
- * Implementa un método llamado verCartasJugador que muestre por pantalla las cartas de un jugador. Para saber qué jugador mostrar,
- * indicamos como parámetro del método el nombre del Jugador.
- * 
- * 
- * Vamos a pensar ahora que el primer jugador es siempre el humano que interactua con nuestro programa y el resto, jugadores
- * controlados por el ordenador.
- * 
- * -Modificar la clase Juego para que: El constructor admita como segundo parametro el nombre del jugador humano. Además debe mostrar
- * por pantalla un mensaje de bienvenida y el nombre de cada uno de los jugadores de la partida (incluyendo el humano) .
- * 
- * El metodo repartir debe mostrar por pantalla el palo que pinta con un mensaje del tipo "Pintan bastos" o "Pintan oros" y debe
- *devolver el número asociado con el palo que pinta. 
- *
- *Además debe mostrar por pantalla las cartas que recibe el jugador humano.
- *Añadir un método verCartasJugadorHumano que muestre las cartas del jugador humano.
- * Modificar el nombre del metodo verCartasJugador para que pase a llamarse hacerTrampasYVerCartasDeJugador.
+ *- Exista un nuevo método que sea tirarCartaAleatoria. El método muestra por pantalla el nombre del jugador que ha tirado la 
+ *carta y la carta tirada. Devuelve la carta tirada. En caso de que el jugador no tenga cartas, devuelve null.
  */
 public class Juego
 {
@@ -65,7 +46,7 @@ public class Juego
         cartaQuePinta = "";
         crearJugador(numJugadores); //-----------------(mt___4)
 
-        mostrarBienVenida();//--------------------------da la bien venida a los jugadores y muestra todos sus mombres. (mt_____6)
+        mostrarBienVenida();//--------------------------da la bien venida a los jugadores y muestra todos sus mombres. (mt_____66)
     }
 
     /**
@@ -155,7 +136,7 @@ public class Juego
     }
 
     /**
-     * muestra el nombre de los jugadores creados aleatoriamente.---------------------------------------------------- 5
+     * muestra el nombre de los jugadores creados aleatoriamente.------------------------------------------------------ 5
      */
     public void mostrarJugadores(){
         System.out.println("========== Name all player.");
@@ -166,7 +147,19 @@ public class Juego
     }
 
     /**
-     * para dar la bienVenida. ---------------------------------------------------------------------------------------- 6
+     * El método
+     * muestra por pantalla el nombre del jugador que ha tirado la carta y la carta tirada. Devuelve la carta----------- 6
+     * tirada. En caso de que el jugador no tenga cartas o de que el nombre especificado como parámetro no 
+     * coincida con ninguna carta, devuelve null
+     */
+    public Carta tirarCarta(String nameCarta){
+        Carta cartaTirada = null;
+        
+        return cartaTirada;
+    }
+    
+    /**
+     * para dar la bienVenida. ---------------------------------------------------------------------------------------- 66
      */
     private void mostrarBienVenida(){
 
