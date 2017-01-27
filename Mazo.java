@@ -6,7 +6,7 @@ import java.util.Random;
 public class Mazo
 {
     // instance variables - replace the example below with your own
-    private ArrayList<Carta> baraja;
+    public ArrayList<Carta> baraja;
     private Carta carta;
     /**
      * Constructor for objects of class Mazo

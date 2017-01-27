@@ -19,8 +19,10 @@ public class Juego
     //constante para fijar el nº de cartas que ha de recibir cada jugador.
     public static final int NUM_CARTAS = 5;
 
-    private ArrayList<Jugador> jugadores;// para almacenar jagadores
+    private ArrayList<Jugador> jugadores;//--- para almacenar jagadores
     private Mazo mazo;
+    private Carta carta; // --------- para almacenar cada una de las cartas que valla recibiendo cada uno de los jugadores ______(en mt 1).
+    private String cartaQuePinta; //----------almacena la carta que pinte el jugador que reparta las cartas ______(en mt 1).
     private int numJugadores;
 
     //Array para poder elegir nombres  aleatoriamente.
@@ -38,12 +40,14 @@ public class Juego
         this.numJugadores = (numJugadores < 3 || numJugadores > 5) ? 4 : numJugadores;
         jugadores = new ArrayList<>();
         mazo = new Mazo();
+        carta = null;
+        cartaQuePinta = "";
         crearJugador(numJugadores);
 
     }
 
     /**
-     * reparte cartas entre los jugadores
+     * reparte cartas entre los jugadores -------------------------------------------------------------------- 1
      */
     public void repartir(){
         mazo.barajar();
@@ -51,16 +55,17 @@ public class Juego
         while(contCartas < NUM_CARTAS){
             int contJugadores = 0;
             while(contJugadores < jugadores.size()){
-                jugadores.get(contJugadores).recibirCarta(mazo.sacarCartaPorEncima());
-                contJugadores ++;
-            }
-
+                carta = mazo.sacarCartaPorDebajo(); //en cada iteración del bucle while saca y elimina una carta del mazo, y la almacena en 'carta'
+                jugadores.get(contJugadores).recibirCarta(carta); // cada jugador va recibiendo la carta almacena en 'carta'.
+                cartaQuePinta = carta.toString(); // almacena la carta de cada iteración, termina por quedarse con la última, ¡¡la que pinta!!
+                contJugadores ++;                
+            }            
             contCartas ++;
         }
     }
 
     /**
-     *muestre por pantalla las cartas de un jugador. Para saber qué jugador mostrar,
+     *muestre por pantalla las cartas de un jugador. Para saber qué jugador mostrar,-------------------------- 2
      * indicamos como parámetro del método el nombre del Jugador
      */
     public void verCartasJugador(String name){
@@ -72,11 +77,12 @@ public class Juego
             }
             cont ++;
         }
+        System.out.println("========== Carta que pinta.-" +cartaQuePinta);
         System.out.println("");
     }
     
     /**
-     * muestra las cartas de los jugadores. 
+     * muestra las cartas de los jugadores. ------------------------------------------------------------------ 3
      */
     public void muestraCartasDeTodosLosJugadores(){
         int cont = 0;
@@ -87,11 +93,13 @@ public class Juego
             System.out.println("");
             cont ++;
         }
+        System.out.println("========== Carta que pinta.-" +cartaQuePinta);
         System.out.println("");
     }
 
     /**
-     * crea el nº de jugadores pasados por parámetro, entre 3 y 5, sino creará 4 por defecto, y los añade a la colección de jugadores.
+     * crea el nº de jugadores pasados por parámetro, entre 3 y 5, sino creará 4 por defecto, y los 
+     * añade a la colección de jugadores. ----------------------------------------------------------------------- 4
      */
     private void crearJugador(int numJ){
         if(numJ < 3 || numJ > 5){
@@ -114,7 +122,7 @@ public class Juego
     }
 
     /**
-     * muestra el nombre de los jugadores creados aleatoriamente.
+     * muestra el nombre de los jugadores creados aleatoriamente.---------------------------------------------------- 5
      */
     public void mostrarJugadores(){
         for(int i = 0; i < jugadores.size(); i++){
