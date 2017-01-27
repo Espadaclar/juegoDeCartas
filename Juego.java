@@ -92,7 +92,7 @@ public class Juego
      *muestre por pantalla las cartas de un jugador. Para saber qué jugador mostrar,-------------------------- 2
      * indicamos como parámetro del método el nombre del Jugador.
      */
-    public void verCartasJugador(String name){
+    public void hacerTrampasYVerCartasDeJugador(String name){
         int cont = 0;
         boolean encontrado = false;
         System.out.println("================= Cartas de " +name);
@@ -127,7 +127,7 @@ public class Juego
      *  que muestre las cartas del jugador humano.-------------------------------------------------------------- 3b
      */
     public void verCartasJugadorHumano(){
-        verCartasJugador(jugadorHumano);
+        hacerTrampasYVerCartasDeJugador(jugadorHumano);
     }
     
     /**
