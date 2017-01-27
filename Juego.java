@@ -66,14 +66,16 @@ public class Juego
 
     /**
      *muestre por pantalla las cartas de un jugador. Para saber qué jugador mostrar,-------------------------- 2
-     * indicamos como parámetro del método el nombre del Jugador
+     * indicamos como parámetro del método el nombre del Jugador.
      */
     public void verCartasJugador(String name){
         int cont = 0;
+        boolean encontrado = false;
          System.out.println("================= Cartas de " +name);
-        while(cont < jugadores.size()){
+        while(cont < jugadores.size() && !encontrado){
             if(jugadores.get(cont).getNombreJugador().equals(name)){
                 jugadores.get(cont).verCartasJugador();
+                encontrado = true;
             }
             cont ++;
         }
