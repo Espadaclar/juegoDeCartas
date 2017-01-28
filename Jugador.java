@@ -1,4 +1,4 @@
-
+import java.util.Random;
 /**
  * Añadir la clase Jugador que permita a un jugador identificado por un nombre (en formato String) ser capaz de tener
  * hasta 5 cartas. El constructor debe admitir el nombre del jugador como parámetro. Además debe haber un método llamado
@@ -9,6 +9,8 @@ public class Jugador
 {
     private String name;
     private Carta[] cartasJugador;
+    private int cont33; // controla el while del mt jugarCartaAleatoria()(mt nº__________4)
+   // private int cont44; // controla el while del mt jugaCarta()(mt nº__________3)
 
     /**
      * Constructor for objects of class Jugador
@@ -17,6 +19,8 @@ public class Jugador
     {
         this.name = name;
         cartasJugador = new Carta[5];
+        cont33 = 0;
+       // cont44 = 0;
     }
 
     /**
@@ -35,7 +39,7 @@ public class Jugador
     }
 
     /**
-     * muestra las cartas del jugador.  ------------------------------------------------------------------ 2
+     * muestra las cartas del jugador.  -------------------------------------------------------------------- 2
      */
     public void verCartasJugador(){
         for(int i = 0; i < cartasJugador.length; i ++){
@@ -43,13 +47,15 @@ public class Jugador
                 System.out.println( " " +cartasJugador[i]);
             }
         }
+        System.out.println("=================");
+        System.out.println("");
     }
 
     /**
      * tirarCarta. Admite un parámetro String que indica el nombre de la carta a tirar. El método
-     * muestra por pantalla el nombre del jugador que ha tirado la carta y la carta tirada. Devuelve la carta tirada.
-     * En caso de que el jugador no tenga cartas o de que el nombre especificado como parámetro no coincida con
-     * ninguna carta, devuelve null
+     * muestra por pantalla el nombre  la carta tirada. Devuelve la carta tirada.--------------------------  3
+     * En caso de que el jugador no tenga cartas o de que el nombre especificado como
+     * parámetro no coincida con ninguna carta, devuelve null
      */
     public Carta juegaCarta(String nameCarta){
         Carta cartaJugada = null;
@@ -68,7 +74,29 @@ public class Jugador
         System.out.println(cartaJugada);
         return cartaJugada;
     }
-    
+
+    /**
+     * tirarCartaAleatoria. El método muestra por pantalla  la carta tirada. Devuelve -------------------- 4
+     * la carta tirada. En caso de que el jugador no tenga cartas, devuelve null.
+     */
+    public Carta jugarCartaAleatoria(){
+        Random ale = new Random();       
+        Carta cartaJugada = null;
+        boolean encontrado = false;
+        while(cont33 < cartasJugador.length && !encontrado && cartasJugador.length > 0){ 
+            int cartaAleatoria = ale.nextInt(cartasJugador.length);
+            if(cartasJugador[cartaAleatoria] != null ){
+                cartaJugada = cartasJugador[cartaAleatoria];
+                cartasJugador[cartaAleatoria] = null;
+                encontrado = true;
+                cont33 ++;
+            }
+        }
+        System.out.println("===== Carta aleatoria");        
+        System.out.println(cartaJugada);
+        return cartaJugada;
+    }
+
     /**
      * retorna el nombre del jugador. -------------------------------------------------------------------- 44
      */
@@ -76,11 +104,5 @@ public class Jugador
         return name;
     }
 }
-
-
-
-
-
-
 
 
