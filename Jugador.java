@@ -8,7 +8,7 @@ import java.util.Random;
 public class Jugador
 {
     private String name;
-    private Carta[] cartasJugador;
+    private  Carta[] cartasJugador;
     private int cont33; // controla el while del mt jugarCartaAleatoria()(mt nº__________4)
    // private int cont44; // controla el while del mt jugaCarta()(mt nº__________3)
 
@@ -71,7 +71,7 @@ public class Jugador
             }
             cont ++;
         }
-        System.out.println(cartaJugada);
+       // System.out.println(cartaJugada);
         return cartaJugada;
     }
 
@@ -97,6 +97,22 @@ public class Jugador
         return cartaJugada;
     }
 
+    /**
+     * devuelve la carta del jugador que está en el índice pasado como parámetro. ---------------------------55555 55555555555
+     */
+    public Carta cartaJ(int indiceCarta){
+        Carta carta = null;
+        carta = cartasJugador[indiceCarta];
+        return carta;
+    }
+    
+    /**
+     * pone un elemento del array en null.                                   ---------------------------55555 55555555555
+     */
+    public void poneElementoANull(int indiceCarta){
+        cartasJugador[indiceCarta] = null;
+    }
+    
     /**
      * retorna el nombre del jugador. -------------------------------------------------------------------- 44
      */

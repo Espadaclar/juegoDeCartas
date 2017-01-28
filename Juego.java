@@ -35,10 +35,10 @@ public class Juego
     {
         //aplico operador alternativa para asegurar un nº de jugadores correcto.
         this.numJugadores = (numJugadores < 3 || numJugadores > 5) ? 4 : numJugadores;
-        
+
         jugadores = new ArrayList<>();
         mazo = new Mazo();
-        
+
         Jugador jugador2 = new Jugador(jugadorHumano);
         jugadores.add(jugador2);//----------------añado el nuevo jugador a la colección de jugadores, será el 1º de la colección.
         carta = null;
@@ -46,7 +46,7 @@ public class Juego
         cartaQuePinta = "";
         crearJugador(numJugadores); //-----------------(mt___4)
 
-        mostrarBienVenida();//--------------------------da la bien venida a los jugadores y muestra todos sus mombres. (mt_____66)
+        mostrarBienVenida();//--------------------------da la bien venida a los jugadores y muestra todos sus mombres. (mt_____6)
     }
 
     /**
@@ -103,14 +103,14 @@ public class Juego
         System.out.println("========== Carta que pinta.-" +cartaQuePinta);
         System.out.println("");
     }
-    
+
     /**
      *  que muestre las cartas del jugador humano.-------------------------------------------------------------- 3b
      */
     public void verCartasJugadorHumano(){
         hacerTrampasYVerCartasDeJugador(jugadorHumano);
     }
-    
+
     /**
      * crea el nº de jugadores pasados por parámetro, entre 3 y 5, sino creará 4 por defecto, y los 
      * añade a la colección de jugadores. ----------------------------------------------------------------------- 4
@@ -136,7 +136,7 @@ public class Juego
     }
 
     /**
-     * muestra el nombre de los jugadores creados aleatoriamente.------------------------------------------------------ 5
+     * muestra el nombre de los jugadores creados aleatoriamente.---------------------------------------------------- 5
      */
     public void mostrarJugadores(){
         System.out.println("========== Name all player.");
@@ -148,16 +148,43 @@ public class Juego
 
     /**
      * El método
-     * muestra por pantalla el nombre del jugador que ha tirado la carta y la carta tirada. Devuelve la carta----------- 6
-     * tirada. En caso de que el jugador no tenga cartas o de que el nombre especificado como parámetro no 
-     * coincida con ninguna carta, devuelve null
+     * muestra por pantalla el nombre del jugador que ha tirado la carta y la carta tirada.---------666666666666666666666 6
+     * Devuelve la carta tirada. En caso de que el jugador no tenga cartas o de que el nombre
+     * especificado como parámetro no coincida con ninguna carta, devuelve null
      */
     public Carta tirarCarta(String nameCarta){
-        Carta cartaTirada = null;
-        
-        return cartaTirada;
+        Carta cartaTirada = null;//----- en cada iteración almacena cada una de las cartas de todos los jugadores.
+        Carta cartaTirada2 = null;// --- almacena la carta que tira el jugador, o null si no tiene cartas o no existe esa carta.
+        int cont = 0;       //---------- para el 1 bucle while.
+        boolean encontrado = false; //-- cuando encontrado valga true, el bucle while deja de iterar.
+        String nameJugadores = "";  //-- almacena el nombre del jugador que tine la carta pasada por parámetro.
+
+        while(cont < jugadores.size() && !encontrado){
+            int cont2 = 0;
+
+            while(cont2 < 5  && !encontrado ){
+                //cartaTirada almacena una carta diferente en cada iteración, empezando por la primer carta del 1º jugador.
+                cartaTirada = jugadores.get(cont).cartaJ(cont2);
+                //en el if comparamos la carta almacenada con la carta pasada en el parámetro nameCarta.
+                if(cartaTirada != null && cartaTirada.toString().equals(nameCarta)){
+                    //si la carta existe y el jugador tenía cartas, la carta queda almacenada en cartaTirada2.
+                    cartaTirada2 = jugadores.get(cont).cartaJ(cont2);;
+                    //elimino la carta tirada por el jugador, quedandose este con una menos.
+                    jugadores.get(cont).poneElementoANull(cont2);
+                    nameJugadores = jugadores.get(cont).getNombreJugador();
+                    encontrado = true;
+                }
+                cont2 ++;
+            }
+            cont ++;
+        }
+        if(cartaTirada != null && cartaTirada.toString().equals(nameCarta)){
+            System.out.println("Carta jugada por " +nameJugadores+ "\n ===============  " +cartaTirada.toString());
+            System.out.println("");
+        }
+        return cartaTirada2;
     }
-    
+
     /**
      * para dar la bienVenida. ---------------------------------------------------------------------------------------- 66
      */
@@ -169,11 +196,3 @@ public class Juego
     }
 
 }
-
-
-
-
-
-
-
-
