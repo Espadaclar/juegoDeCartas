@@ -9,9 +9,8 @@ public class Jugador
 {
     private String name;
     private  Carta[] cartasJugador;
-    private int cont33; // controla el while del mt jugarCartaAleatoria()(mt nº__________4)
-   // private int cont44; // controla el while del mt jugaCarta()(mt nº__________3)
-
+    private int cont33; // almacena el nº de itearciones en el while del mt jugarCartaAleatoria()(mt nº__________4)
+    private int numCartaAle;// almacena el nº de cartas alea.. que ha jugado cada jugador.  (mt nº__ _4)
     /**
      * Constructor for objects of class Jugador
      */
@@ -20,7 +19,7 @@ public class Jugador
         this.name = name;
         cartasJugador = new Carta[5];
         cont33 = 0;
-       // cont44 = 0;
+        numCartaAle = 0;// almacena el nº de cartas alea.. que ha jugado cada jugador.  (mt nº__ _4)
     }
 
     /**
@@ -71,54 +70,58 @@ public class Jugador
             }
             cont ++;
         }
-       // System.out.println(cartaJugada);
+        // System.out.println(cartaJugada);
         return cartaJugada;
     }
 
     /**
-     * tirarCartaAleatoria. El método muestra por pantalla  la carta tirada. Devuelve -------------------- 4
-     * la carta tirada. En caso de que el jugador no tenga cartas, devuelve null.
+     *  El método muestra por pantalla  la carta tirada aleatoriamente. 
+     *  Devuelve la carta tirada, y la elimina poniendo el valor a null.
+     * En caso de que el jugador no tenga cartas, devuelve null.------------------------------------------ 4
      */
     public Carta jugarCartaAleatoria(){
         Random ale = new Random();       
-        Carta cartaJugada = null;
-        boolean encontrado = false;
+        Carta cartaJugada = null;// ------almacenará una carta escogida aleatoriamente del array.
+        boolean encontrado = false;// ----para que el bucle while deje de iterar.
         while(cont33 < cartasJugador.length && !encontrado && cartasJugador.length > 0){ 
             int cartaAleatoria = ale.nextInt(cartasJugador.length);
-            if(cartasJugador[cartaAleatoria] != null ){
-                cartaJugada = cartasJugador[cartaAleatoria];
-                cartasJugador[cartaAleatoria] = null;
-                encontrado = true;
-                cont33 ++;
+            if(cartasJugador[cartaAleatoria] != null ){//----------- la posición aleatoria elegida no debe ser null.
+                cartaJugada = cartasJugador[cartaAleatoria]; //----- almacena una carta escogida aleatoriamente del array.
+                cartasJugador[cartaAleatoria] = null;//--------------elimina del array la carta que ha jugado el jugador.
+                encontrado = true; //--------------------------------bucle while deja de iterar.
+                cont33 ++;// --------------------------------------- solamente aumenta si se cumple la condición del if.
+                numCartaAle ++;
             }
         }
-        System.out.println("===== Carta aleatoria");        
-        System.out.println(cartaJugada);
+        if(cartaJugada != null){
+            System.out.println("  ====="+numCartaAle+" Carta aleatoria jugada por " +getNombreJugador()); 
+            System.out.println(cartaJugada);
+        }
         return cartaJugada;
     }
 
     /**
-     * devuelve la carta del jugador que está en el índice pasado como parámetro. ---------------------------55555 55555555555
+     * devuelve la carta del jugador que está en el índice pasado como parámetro. 
+     * o null si no tiene carta en ese indice. ----------------------------------------------------------------- 5
      */
     public Carta cartaJ(int indiceCarta){
         Carta carta = null;
         carta = cartasJugador[indiceCarta];
         return carta;
     }
-    
+
     /**
-     * pone un elemento del array en null.                                   ---------------------------55555 55555555555
+     * pone un elemento del array cartasJugador en null. ------------------------------------------------------- 6
      */
     public void poneElementoANull(int indiceCarta){
         cartasJugador[indiceCarta] = null;
     }
-    
+
     /**
-     * retorna el nombre del jugador. -------------------------------------------------------------------- 44
+     * retorna el nombre del jugador. ---------------------------------------------------------------------------- 44
      */
     public String getNombreJugador(){
         return name;
     }
 }
-
 
