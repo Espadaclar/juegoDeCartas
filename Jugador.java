@@ -96,7 +96,6 @@ public class Jugador
                 if(cartasJugador[cartaAleatoria] != null ){//----------- la posición aleatoria elegida no debe ser null.
                     cartaJugada = cartasJugador[cartaAleatoria]; //----- almacena una carta escogida aleatoriamente del array.
                     cartasJugador[cartaAleatoria] = null;//--------------elimina del array la carta que ha jugado el jugador.
-
                     cont33 ++;// --------------------------------------- solamente aumenta si se cumple la condición del if.
                     numDeCartasEnLaMano --; // ---------------------------cada vez que juega una carta se le descuenta una de la mano.
                     numCartaAle ++;
