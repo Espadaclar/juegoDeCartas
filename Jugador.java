@@ -70,7 +70,7 @@ public class Jugador
                 if(cartaJugada != null && cartaJugada.toString().equals(nameCarta)){
                     cartaJugada = cartasJugador[cont];// ----------- entonces almaceno el valor.
                     cartasJugador[cont] = null;    //---------------  pongo la posición a null.
-                    numDeCartasEnLaMano --; // --------------------------------------------------cada vez que juega una carta se le descuenta.
+                    numDeCartasEnLaMano --; // ---------------------------cada vez que juega una carta se le descuenta una de la mano.
                     encontrado = true;// --------------------------- el bucle while finaliza.
                 }
                 cont ++;
@@ -90,19 +90,23 @@ public class Jugador
         Random ale = new Random();       
         Carta cartaJugada = null;// ------almacenará una carta escogida aleatoriamente del array.
         boolean encontrado = false;// ----para que el bucle while deje de iterar.
-        while(cont33 < cartasJugador.length && !encontrado && cartasJugador.length > 0){ 
-            int cartaAleatoria = ale.nextInt(cartasJugador.length);
-            if(cartasJugador[cartaAleatoria] != null ){//----------- la posición aleatoria elegida no debe ser null.
-                cartaJugada = cartasJugador[cartaAleatoria]; //----- almacena una carta escogida aleatoriamente del array.
-                cartasJugador[cartaAleatoria] = null;//--------------elimina del array la carta que ha jugado el jugador.
-                encontrado = true; //--------------------------------bucle while deja de iterar.
-                cont33 ++;// --------------------------------------- solamente aumenta si se cumple la condición del if.
-                numCartaAle ++;
+        if(numDeCartasEnLaMano > 0){
+            while(cont33 < cartasJugador.length && !encontrado && cartasJugador.length > 0){ 
+                int cartaAleatoria = ale.nextInt(cartasJugador.length);
+                if(cartasJugador[cartaAleatoria] != null ){//----------- la posición aleatoria elegida no debe ser null.
+                    cartaJugada = cartasJugador[cartaAleatoria]; //----- almacena una carta escogida aleatoriamente del array.
+                    cartasJugador[cartaAleatoria] = null;//--------------elimina del array la carta que ha jugado el jugador.
+
+                    cont33 ++;// --------------------------------------- solamente aumenta si se cumple la condición del if.
+                    numDeCartasEnLaMano --; // ---------------------------cada vez que juega una carta se le descuenta una de la mano.
+                    numCartaAle ++;
+                    encontrado = true; //--------------------------------bucle while deja de iterar.
+                }
             }
-        }
-        if(cartaJugada != null){
-            System.out.println("  ====="+numCartaAle+" Carta aleatoria jugada por " +getNombreJugador()); 
-            System.out.println(cartaJugada);
+            if(cartaJugada != null){
+                System.out.println("  ====="+numCartaAle+" Carta aleatoria jugada por " +getNombreJugador()); 
+                System.out.println(cartaJugada);
+            }
         }
         return cartaJugada;
     }
