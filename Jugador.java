@@ -11,6 +11,7 @@ public class Jugador
     private  Carta[] cartasJugador;
     private int cont33; // almacena el nº de itearciones en el while del mt jugarCartaAleatoria()(mt nº__________4)
     private int numCartaAle;// almacena el nº de cartas alea.. que ha jugado cada jugador.  (mt nº__ _4)
+    private int numDeCartasEnLaMano;//----------------------------------------------------------------------------------30/01/2610
     /**
      * Constructor for objects of class Jugador
      */
@@ -20,6 +21,7 @@ public class Jugador
         cartasJugador = new Carta[5];
         cont33 = 0;
         numCartaAle = 0;// almacena el nº de cartas alea.. que ha jugado cada jugador.  (mt nº__ _4)
+        numDeCartasEnLaMano =  0;//------------------------------------------------------------------------------------- 30/01/2610
     }
 
     /**
@@ -32,6 +34,7 @@ public class Jugador
             if(cartasJugador[cont] == null){
                 cartasJugador[cont] = carta;
                 encontrado = true;
+                numDeCartasEnLaMano++;
             }
             cont ++;
         }
@@ -60,18 +63,22 @@ public class Jugador
         Carta cartaJugada = null;
         int cont = 0;
         boolean encontrado = false;
-        while(cont < cartasJugador.length && !encontrado){
-            cartaJugada = cartasJugador[cont];//---almaceno en la VL el valor que el Arrays tiene en cada iteración.
-            //---- paso a comprobar si ese valor no e null, y si su valor es el mismo que el valor del parámetro nameCarta.
-            if(cartaJugada != null && cartaJugada.toString().equals(nameCarta)){
-                cartaJugada = cartasJugador[cont];// ----------- entonces almaceno el valor.
-                cartasJugador[cont] = null;    //---------------  pongo la posición a null.
-                encontrado = true;// --------------------------- el bucle while finaliza.
+        if(numDeCartasEnLaMano > 0){
+            while(cont < cartasJugador.length && !encontrado){
+                cartaJugada = cartasJugador[cont];//---almaceno en la VL el valor que el Arrays tiene en cada iteración.
+                //---- paso a comprobar si ese valor no e null, y si su valor es el mismo que el valor del parámetro nameCarta.
+                if(cartaJugada != null && cartaJugada.toString().equals(nameCarta)){
+                    cartaJugada = cartasJugador[cont];// ----------- entonces almaceno el valor.
+                    cartasJugador[cont] = null;    //---------------  pongo la posición a null.
+                    numDeCartasEnLaMano --; // --------------------------------------------------cada vez que juega una carta se le descuenta.
+                    encontrado = true;// --------------------------- el bucle while finaliza.
+                }
+                cont ++;
             }
-            cont ++;
+            // System.out.println(cartaJugada);
         }
-        // System.out.println(cartaJugada);
         return cartaJugada;
+
     }
 
     /**
