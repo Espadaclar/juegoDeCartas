@@ -19,8 +19,9 @@ public class Carta
     // VALOR_CARTAS almacena en orden descendente las cartas que más valor tienen en el juego del tute.
     public static int[] VALOR_CARTAS = {1, 3, 12, 11, 10, 7, 6, 5, 4, 2};
 
-    
     private int paloCarta2; //*********** unicamente para poder mostrar en el mt____4 la carta que pinta.
+    private boolean cartaSuperior; //******* varía de valor en se mt___4, y también se utilizará en el mt_____4bis.
+    private boolean ayudante; // ***si en el mt____4 cambia a true, el mt____4bis muestra un mensaje de cartas repetidas.
     /**
      * Constructor for objects of class Carta
      */
@@ -29,8 +30,10 @@ public class Carta
         this.valorCarta = valorCarta;
         this.paloCarta = paloCarta;
         posicionValorCarta = 0;// ------------------------------------------------------ para almacenar el valor de la carta
-        
+
         paloCarta2 = 0;//*********** unicamente para poder mostrar en el mt____4 la carta que pinta.
+        cartaSuperior = false; ///******* varía de valor en se mt___4, y también se utilizará en el mt_____4bis.
+        ayudante = false;
     }
 
     /**
@@ -88,7 +91,7 @@ public class Carta
         }
         return palo;
     }     
-    
+
     /**
      * devuelve la posicion que el valor de la carta tiene en el Array VALOR_CARTAS.
      *  esta posición la obtengo en el mt_____4.                     ------------------------------------------ 3
@@ -104,7 +107,7 @@ public class Carta
      *  contrario. No hace falta comprobar que el parámetro sea null o no, se asume que no lo es.-------------- 4
      */
     public boolean ganaA(Carta recibida, int palo){
-        boolean cartaSuperior = false;
+        //boolean cartaSuperior = false;
         boolean encontrado = false;
         int recibida2 = recibida.getValorCarta(); //almacena el valor de la carta del parámetro; (1, 2, 3 ..... 12). 
 
@@ -122,31 +125,48 @@ public class Carta
             if(posicionValorCarta > recibida.getPosicionValorCarta()){
                 cartaSuperior = true;
             }
+            else if(posicionValorCarta == recibida.getPosicionValorCarta()){
+                System.out.println("Error,");
+                System.out.println("Error, baraja con varias cartas iguales al  " +recibida.toString()+  "  !!!!!!");
+                System.out.println("");
+                ayudante = true;//********** si vale true, el mt___4bis también muestra este mensaje de error.*********
+            }
         }
         else if( (recibida.getPaloCarta() != getPaloCarta()) && getPaloCarta() == palo ){
             cartaSuperior = true;
-
         }
         else if( (recibida.getPaloCarta() != getPaloCarta()) && recibida.getPaloCarta() == palo ){
             cartaSuperior = false;
-
         }
         else if( (getPaloCarta() != recibida.getPaloCarta())){
             cartaSuperior = true;
-
         }
+        //Las siguientes dos líneas de código sirven para poder utilizar el mt_____4bis.
         paloCarta2 = palo;//--------- paso al atributo paloCarta2 el valor del palo pasado en el parámetro.
         nombrePaloCarta2();//--------  este mt pasa el valor int del palo al nombre del palo (oros, copas ...)mt____55
-        //muestro por pantalla las cartas relacionadas.
-        if(cartaSuperior == true){
-            System.out.println("Si el triunfo es.- " +nombrePaloCarta2()+ ".\n la carta " +toString()
-                + " gana a la carta " +recibida.toString()+ ".");
-            System.out.println("           ============================");
-        }
-        else if (cartaSuperior == false){
-            System.out.println("Si el triunfo es.- " +nombrePaloCarta2()+ ".\n la carta " + toString()
-                + " __no!! gana a la carta " +recibida.toString()+ "." );
-            System.out.println("           ============================");
+
+        return cartaSuperior;
+    }
+
+    /**
+     * Muestra por pantalla el triunfo, el nombre de dos cartas y cual de ellas gana
+     *  conforme a las reglas del tute recogidas en la Wikipedia, también devuelbe un boolean.------------------ 4bis
+     */
+    public boolean ganaA_EnPantalla(Carta recibida, int palo){
+        ganaA( recibida, palo);
+        //if(ayudante == true){//********** esta condición quiere  decir que tenemos cartas repetidas ver mt____4 *****
+       // }
+         if(!ayudante){//****esta condición quiere  decir que no tenemos cartas repetidas. ver mt____4 *****
+            if(cartaSuperior == true){
+                System.out.println("Si el triunfo es.- " +nombrePaloCarta2()+ ".\n la carta " +toString()
+                    + " gana a la carta " +recibida.toString()+ ".");
+                System.out.println("           ============================");
+            }
+            else if (cartaSuperior == false){
+                System.out.println("Si el triunfo es.- " +nombrePaloCarta2()+ ".\n la carta " + toString()
+                    + " __no!! gana a la carta " +recibida.toString()+ "." );
+                System.out.println("           ============================");
+            }
         }
         System.out.println("");
         return cartaSuperior;
@@ -161,8 +181,7 @@ public class Carta
         return num + " " +name; 
         //return nombreValorCarta()+ " " +nombrePaloCarta() ;
     }
-    
-    
+
     /**
      * devuelve el palo de la carta en forma de String. (oros, copas, espadas ..)
      * UNICAMENTE PARA PODER MOSTRAR EN PANTALLA EL TRIUNFO EN EL mt_________4      ----------------------------- 55
@@ -184,5 +203,4 @@ public class Carta
         return palo;
     }     
 }
-
 
