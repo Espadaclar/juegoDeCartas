@@ -75,8 +75,8 @@ public class Juego
     }
 
     /**
-     *muestre por pantalla las cartas de un jugador. Para saber qué jugador mostrar,-------------------------- 2
-     * indicamos como parámetro del método el nombre del Jugador.
+     *muestre por pantalla las cartas de un jugador. Para saber qué jugador mostrar,
+     * indicamos como parámetro del método el nombre del Jugador.                       -----       --------------------- 2
      */
     public void hacerTrampasYVerCartasDeJugador(String name){
         int cont = 0;
@@ -141,8 +141,8 @@ public class Juego
     }
 
     /**
-     * muestra el nombre de los jugadores creados aleatoriamente.---------------------------------------------------- 5
-     * y el nombre del jugadorHumano.
+     * muestra el nombre de los jugadores creados aleatoriamente.
+     * y el nombre del jugadorHumano.                               ----------------------------------------------- 5
      */
     public void mostrarJugadores(){
         System.out.println("========== Name all player.");
@@ -154,9 +154,9 @@ public class Juego
 
     /**
      * El método
-     * muestra por pantalla el nombre del jugador que ha tirado la carta y la carta tirada.--------------------------  6
+     * muestra por pantalla el nombre del jugador que ha tirado la carta y la carta tirada.
      * Devuelve la carta tirada. En caso de que el jugador no tenga cartas o de que el nombre
-     * especificado como parámetro no coincida con ninguna carta, devuelve null
+     * especificado como parámetro no coincida con ninguna carta, devuelve null         --------------------------  6
      */
     public Carta tirarCarta(String nameCarta){
         Carta cartaTirada = null;//----- en cada iteración almacena cada una de las cartas de todos los jugadores.
@@ -221,9 +221,22 @@ public class Juego
         return cartaAleatoria;
     }
 
+    /**
+     * se muestran en pantalla todas las cartas jugadas aleatoriamente, junto con el nombre del jugador.-------------------- 8
+     */    
+    public void tirarTodasCartasAleatoriamente(){
+         Random ale = new Random(); //------------ elige uno de los jugadores, aleatoriamente.
+        Random ale2 = new Random(); //------------ elige una de las cartas de los jugadores, aleatoriamente.
+        Carta cartaAleatoria = null;
+        int aux = ale.nextInt(jugadores.size());//----- elige la posción de uno de los jugadores dentro de arrayList.
+        int aux2 = ale.nextInt(NUM_CARTAS);//----- elige la posción de la carta.
+        while(jugadores.get(aux).cartaJ(aux2) != null){
+            tirarCartaAleatoria();//--------------- (mt_____ 7)
+        }
+    }
 
     /**
-     * para dar la bienVenida. ---------------------------------------------------------------------------------------- 66
+     * para dar la bienVenida. -------------------------------------------------------------------------------------------- 66
      */
     private void mostrarBienVenida(){
 
