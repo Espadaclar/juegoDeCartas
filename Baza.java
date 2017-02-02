@@ -26,7 +26,7 @@ public class Baza
     private ArrayList<Carta> cartasDeLaBaza; // almacena las cartas de la baza.
 
     private ArrayList<Jugador> jugadorGanador; // almacena el nombre de todos los jugadores.
-    private String jugadorGanador22; // almacenará el nombre del jugador ganador.
+    private String nombreJugadorGanador; //------------- almacenará el nombre del jugador ganador.
     /**
      * Constructor for objects of class Baza
      */
@@ -37,7 +37,7 @@ public class Baza
 
         cartasDeLaBaza = new ArrayList<>();
         jugadorGanador = new ArrayList<>();
-        jugadorGanador22 = "";// almacenará el nombre del jugador ganador, en el mt______3.
+        nombreJugadorGanador = "";// almacenará el nombre del jugador ganador, en el mt______3.
     }
 
     /**
@@ -74,16 +74,21 @@ public class Baza
         Carta cartaB = null;
         int cont = 0;
         int cont2 = 1;
-        while( cont < cartasDeLaBaza.size() -1 && !cartasDeLaBaza.isEmpty()){	
+        while( cont < cartasDeLaBaza.size() -1 && !cartasDeLaBaza.isEmpty()){   
             //si la condición devuelve true es porque la primera carta de la colección gana a
-            // la cartaB, entonces almaceno la 1º carta del Array en al VL cartaB		           
-            if(cartasDeLaBaza.get(cont).ganaA(cartasDeLaBaza.get(cont2), pintaPalo)){
-                cartaB = cartasDeLaBaza.get(cont);
-                jugadorGanador22 = jugadorGanador.get(cont).getNombreJugador(); // almaceno el nombre del jugador de la 1 carta.
+            // la cartaB, entonces almaceno la 1º carta del Array en al VL cartaB   
+            if(cartasDeLaBaza.size() == 1){
+                cartaB = cartasDeLaBaza.get(0);
             }
             else{
-                cartaB = cartasDeLaBaza.get(cont +1);
-                jugadorGanador22 = jugadorGanador.get(cont +1).getNombreJugador();
+                if(cartasDeLaBaza.get(cont).ganaA(cartasDeLaBaza.get(cont2), pintaPalo)){
+                    cartaB = cartasDeLaBaza.get(cont);
+                    nombreJugadorGanador = jugadorGanador.get(cont).getNombreJugador(); // almaceno el nombre del jugador de la 1 carta.
+                }
+                else{
+                    cartaB = cartasDeLaBaza.get(cont +1);
+                    nombreJugadorGanador = jugadorGanador.get(cont +1).getNombreJugador();
+                }
             }
             cont ++;
             cont2++;
@@ -96,11 +101,9 @@ public class Baza
      *devuelve el nombre del jugador que va ganando la baza en el momento actual. -------------------------------------------- 5
      */ 
     public String nombreJugadorQueVaGanandoLaBaza(){
-		return jugadorGanador22;
+        return nombreJugadorGanador;
     }
 
-    
-    
     /**
      * recorre el ArrayList para comprobar datos ------------------------------------------------------------------------------- 44
      */
