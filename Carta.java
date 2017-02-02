@@ -111,12 +111,12 @@ public class Carta
         boolean encontrado = false;
         int recibida2 = recibida.getValorCarta(); //almacena el valor de la carta del parámetro; (1, 2, 3 ..... 12). 
 
-        int cont = 0; //--------para conocer la posición que el valor de la carta ocupa en el array VALOR_CARTAS.
+        int cont = 0; //----para conocer la posición que el valor de la carta ocupa en el array VALOR_CARTAS, y para el funcionamiento del while.
         int cont2 = 0;
         while(cont < VALOR_CARTAS.length && !encontrado){
             int aux = VALOR_CARTAS[cont]; // -------------------------almacea el valor del indice del array.
             if(recibida2 == aux){
-                posicionValorCarta = cont; //-------------------almaceno en posicionValorCarta el valor de la carta.
+                posicionValorCarta = cont; //-------------------almaceno en el atributo posicionValorCarta, el valor de la carta.
                 encontrado = true;
             }            
             cont ++;
@@ -125,7 +125,7 @@ public class Carta
             if(posicionValorCarta > recibida.getPosicionValorCarta()){
                 cartaSuperior = true;
             }
-            else if(posicionValorCarta == recibida.getPosicionValorCarta()){
+            else if(posicionValorCarta == recibida.getPosicionValorCarta()){//--getPosicionValorCarta() mt___4
                 System.out.println("Error,");
                 System.out.println("Error, baraja con varias cartas iguales al  " +recibida.toString()+  "  !!!!!!");
                 System.out.println("");
@@ -141,9 +141,10 @@ public class Carta
         else if( (getPaloCarta() != recibida.getPaloCarta())){
             cartaSuperior = true;
         }
-        //Las siguientes dos líneas de código sirven para poder utilizar el mt_____4bis.
-        paloCarta2 = palo;//--------- paso al atributo paloCarta2 el valor del palo pasado en el parámetro.
-        nombrePaloCarta2();//--------  este mt pasa el valor int del palo al nombre del palo (oros, copas ...)mt____55
+        
+        //**************Las siguientes dos líneas de código sirven para poder utilizar el mt_____4bis. nada que ver con el ejercicio de clase.
+        //paloCarta2 = palo;//***********--------- paso al atributo paloCarta2 el valor del palo pasado en el parámetro.
+        //nombrePaloCarta2();//**********--------  este mt pasa el valor int del palo al nombre del palo (oros, copas ...)mt____55
 
         return cartaSuperior;
     }
@@ -153,9 +154,7 @@ public class Carta
      *  conforme a las reglas del tute recogidas en la Wikipedia, también devuelbe un boolean.------------------ 4bis
      */
     public boolean ganaA_EnPantalla(Carta recibida, int palo){
-        ganaA( recibida, palo);
-        //if(ayudante == true){//********** esta condición quiere  decir que tenemos cartas repetidas ver mt____4 *****
-       // }
+        ganaA( recibida, palo); // ------ invocación al mt____4.
          if(!ayudante){//****esta condición quiere  decir que no tenemos cartas repetidas. ver mt____4 *****
             if(cartaSuperior == true){
                 System.out.println("Si el triunfo es.- " +nombrePaloCarta2()+ ".\n la carta " +toString()
