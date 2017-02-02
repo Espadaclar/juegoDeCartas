@@ -25,6 +25,8 @@ public class Baza
     private int pintaPalo;  // indica el palo que pinta
     private ArrayList<Carta> cartasDeLaBaza; // almacena las cartas de la baza.
 
+    private ArrayList<Jugador> jugadorGanador; // almacena el nombre de todos los jugadores.
+    private String jugadorGanador22; // almacenará el nombre del jugador ganador.
     /**
      * Constructor for objects of class Baza
      */
@@ -34,6 +36,8 @@ public class Baza
         this.pintaPalo = pintaPalo; // indica el palo que pinta.
 
         cartasDeLaBaza = new ArrayList<>();
+        jugadorGanador = new ArrayList<>();
+        jugadorGanador22 = "";// almacenará el nombre del jugador ganador, en el mt______3.
     }
 
     /**
@@ -44,7 +48,8 @@ public class Baza
      * nombre del jugador que tiro la carta. El método no devuelve nada. ------------------------------------------------------ 1
      */
     public void addCarta(Carta cartaDelJugador, String nombreJugador){
-        Jugador jugador = new Jugador(nombreJugador);
+        Jugador jugadorB = new Jugador(nombreJugador);
+        jugadorGanador.add(jugadorB);
         cartasDeLaBaza.add(cartaDelJugador);
     }
 
@@ -62,28 +67,40 @@ public class Baza
     }
 
     /**
-     *devuelva un objeto Carta. Este objeto carta es la carta que va ganando la baza conforme a las normas del julepe.
-     * En caso de que la baza este vacía este método devuelve null.
+     *devuelva un objeto Carta. Este objeto carta es la carta que va ganando la baza conforme a
+     * las normas del julepe. En caso de que la baza este vacía este método devuelve null. -------------------------------------- 3
      */
     public Carta cartaQueVaGanandoLaBaza(){
         Carta cartaB = null;
         int cont = 0;
-		int cont2 = 1;
+        int cont2 = 1;
         while( cont < cartasDeLaBaza.size() -1 && !cartasDeLaBaza.isEmpty()){	
             //si la condición devuelve true es porque la primera carta de la colección gana a
             // la cartaB, entonces almaceno la 1º carta del Array en al VL cartaB		           
-			if(cartasDeLaBaza.get(cont).ganaA(cartasDeLaBaza.get(cont2), pintaPalo)){
+            if(cartasDeLaBaza.get(cont).ganaA(cartasDeLaBaza.get(cont2), pintaPalo)){
                 cartaB = cartasDeLaBaza.get(cont);
+                jugadorGanador22 = jugadorGanador.get(cont).getNombreJugador(); // almaceno el nombre del jugador de la 1 carta.
             }
-			else{
-				cartaB = cartasDeLaBaza.get(cont +1);
-			}
+            else{
+                cartaB = cartasDeLaBaza.get(cont +1);
+                jugadorGanador22 = jugadorGanador.get(cont +1).getNombreJugador();
+            }
             cont ++;
             cont2++;
         }
         return cartaB;
     }
 
+    /**
+     *  Tenga un método llamado  que no admite parámetros y que 
+     *devuelve el nombre del jugador que va ganando la baza en el momento actual. -------------------------------------------- 5
+     */ 
+    public String nombreJugadorQueVaGanandoLaBaza(){
+		return jugadorGanador22;
+    }
+
+    
+    
     /**
      * recorre el ArrayList para comprobar datos ------------------------------------------------------------------------------- 44
      */
@@ -95,6 +112,4 @@ public class Baza
         }
     }
 }
-
-
 
