@@ -109,43 +109,44 @@ public class Carta
     public boolean ganaA(Carta recibida, int palo){
         //boolean cartaSuperior = false;
         boolean encontrado = false;
-        int recibida2 = recibida.getValorCarta(); //almacena el valor de la carta del parámetro; (1, 2, 3 ..... 12). 
+        if(recibida != null){
+            int recibida2 = recibida.getValorCarta(); //almacena el valor de la carta del parámetro; (1, 2, 3 ..... 12). 
 
-        int cont = 0; //----para conocer la posición que el valor de la carta ocupa en el array VALOR_CARTAS, y para el funcionamiento del while.
-        int cont2 = 0;
-        while(cont < VALOR_CARTAS.length && !encontrado){
-            int aux = VALOR_CARTAS[cont]; // -------------------------almacea el valor del indice del array.
-            if(recibida2 == aux){
-                posicionValorCarta = cont; //-------------------almaceno en el atributo posicionValorCarta, el valor de la carta.
-                encontrado = true;
-            }            
-            cont ++;
-        }
-        if(recibida.getPaloCarta() == getPaloCarta()){
-            if(posicionValorCarta > recibida.getPosicionValorCarta()){
+            int cont = 0; //----para conocer la posición que el valor de la carta ocupa en el array VALOR_CARTAS, y para el funcionamiento del while.
+            int cont2 = 0;
+            while(cont < VALOR_CARTAS.length && !encontrado){
+                int aux = VALOR_CARTAS[cont]; // -------------------------almacea el valor del indice del array.
+                if(recibida2 == aux){
+                    posicionValorCarta = cont; //-------------------almaceno en el atributo posicionValorCarta, el valor de la carta.
+                    encontrado = true;
+                }            
+                cont ++;
+            }
+            if(recibida.getPaloCarta() == getPaloCarta()){
+                if(posicionValorCarta > recibida.getPosicionValorCarta()){
+                    cartaSuperior = true;
+                }
+                else if(posicionValorCarta == recibida.getPosicionValorCarta()){//--getPosicionValorCarta() mt___4
+                    System.out.println("Error,");
+                    System.out.println("Error, baraja con varias cartas iguales al  " +recibida.toString()+  "  !!!!!!");
+                    System.out.println("");
+                    ayudante = true;//********** si vale true, el mt___4bis también muestra este mensaje de error.*********
+                }
+            }
+            else if( (recibida.getPaloCarta() != getPaloCarta()) && getPaloCarta() == palo ){
                 cartaSuperior = true;
             }
-            else if(posicionValorCarta == recibida.getPosicionValorCarta()){//--getPosicionValorCarta() mt___4
-                System.out.println("Error,");
-                System.out.println("Error, baraja con varias cartas iguales al  " +recibida.toString()+  "  !!!!!!");
-                System.out.println("");
-                ayudante = true;//********** si vale true, el mt___4bis también muestra este mensaje de error.*********
+            else if( (recibida.getPaloCarta() != getPaloCarta()) && recibida.getPaloCarta() == palo ){
+                cartaSuperior = false;
             }
-        }
-        else if( (recibida.getPaloCarta() != getPaloCarta()) && getPaloCarta() == palo ){
-            cartaSuperior = true;
-        }
-        else if( (recibida.getPaloCarta() != getPaloCarta()) && recibida.getPaloCarta() == palo ){
-            cartaSuperior = false;
-        }
-        else if( (getPaloCarta() != recibida.getPaloCarta())){
-            cartaSuperior = true;
-        }
-        
-        //**************Las siguientes dos líneas de código sirven para poder utilizar el mt_____4bis. nada que ver con el ejercicio de clase.
-        //paloCarta2 = palo;//***********--------- paso al atributo paloCarta2 el valor del palo pasado en el parámetro.
-        //nombrePaloCarta2();//**********--------  este mt pasa el valor int del palo al nombre del palo (oros, copas ...)mt____55
+            else if( (getPaloCarta() != recibida.getPaloCarta())){
+                cartaSuperior = true;
+            }
 
+            //**************Las siguientes dos líneas de código sirven para poder utilizar el mt_____4bis. nada que ver con el ejercicio de clase.
+            //paloCarta2 = palo;//***********--------- paso al atributo paloCarta2 el valor del palo pasado en el parámetro.
+            //nombrePaloCarta2();//**********--------  este mt pasa el valor int del palo al nombre del palo (oros, copas ...)mt____55
+        }
         return cartaSuperior;
     }
 
@@ -155,7 +156,7 @@ public class Carta
      */
     public boolean ganaA_EnPantalla(Carta recibida, int palo){
         ganaA( recibida, palo); // ------ invocación al mt____4.
-         if(!ayudante){//****esta condición quiere  decir que no tenemos cartas repetidas. ver mt____4 *****
+        if(!ayudante){//****esta condición quiere  decir que no tenemos cartas repetidas. ver mt____4 *****
             if(cartaSuperior == true){
                 System.out.println("Si el triunfo es.- " +nombrePaloCarta2()+ ".\n la carta " +toString()
                     + " gana a la carta " +recibida.toString()+ ".");
