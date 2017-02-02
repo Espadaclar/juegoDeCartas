@@ -11,6 +11,7 @@ import java.util.ArrayList;
  *
  *Tenga un método llamado getPaloPrimeraCartaDeLaBaza sin parámetros que devuelva un entero que representa el palo
  *de la primera carta añadida a la baza o -1 en caso de que no se haya añadido aún ninguna carta.
+ *
  *- Tenga un método llamado cartaQueVaGanandoLaBaza sin parámetros que devuelva un objeto Carta. Este objeto carta es la carta 
  *que va ganando la baza conforme a las normas del julepe. En caso de que la baza este vacía este método devuelve null.
  *- Tenga un método llamado nombreJugadorQueVaGanandoLaBaza que no admite parámetros y que devuelve el nombre del jugador 
@@ -43,6 +44,19 @@ public class Baza
     public void addCarta(Carta cartaDelJugador, String nombreJugador){
         Jugador jugador = new Jugador(nombreJugador);
         cartasDeLaBaza.add(cartaDelJugador);
+    }
+    
+    /**
+     * devuelva un entero que representa el palo de la primera carta añadida a la baza o -1
+     * en caso de que no se haya añadido aún ninguna carta.
+     */
+    public int getPaloPrimeraCartaDeLaBaza(){
+        int palo = -1;
+        if(!cartasDeLaBaza.isEmpty()){
+            palo = cartasDeLaBaza.get(0).getPaloCarta();
+        }
+        
+        return palo;
     }
     
     /**
